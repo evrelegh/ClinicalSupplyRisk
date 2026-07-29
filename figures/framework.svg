@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1030 210" font-family="Palatino Linotype, Palatino, Georgia, serif">
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="10" refX="7.5" refY="4.5" orient="auto">
+      <path d="M0,0 L9,4.5 L0,9 Z" fill="#A0522D"/>
+    </marker>
+  </defs>
+
+  <text x="16" y="28" fill="#A0522D" font-size="14" font-weight="bold" letter-spacing="1.6">COMPUTATIONAL FRAMEWORK</text>
+  <line x1="16" y1="40" x2="1014" y2="40" stroke="#e6d6c8" stroke-width="1"/>
+
+  <!-- DATA -->
+  <rect x="16" y="66" width="224" height="106" rx="10" fill="#FBF3EC" stroke="#A0522D" stroke-width="1.5"/>
+  <text x="32" y="98" fill="#A0522D" font-size="15" font-weight="bold" letter-spacing="1">DATA</text>
+  <text x="32" y="124" fill="#333333" font-size="12.5">ClinicalTrials.gov &#183; DailyMed</text>
+  <text x="32" y="145" fill="#6b6b6b" font-size="11">real enrolment, dropout,</text>
+  <text x="32" y="160" fill="#6b6b6b" font-size="11">dosing &#8212; curated by design</text>
+
+  <line x1="242" y1="119" x2="270" y2="119" stroke="#A0522D" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- MODEL -->
+  <rect x="274" y="66" width="224" height="106" rx="10" fill="#FBF3EC" stroke="#A0522D" stroke-width="1.5"/>
+  <text x="290" y="98" fill="#A0522D" font-size="15" font-weight="bold" letter-spacing="1">MODEL</text>
+  <text x="290" y="124" fill="#333333" font-size="13">S = &#931; X&#7522; &#160; over N patients</text>
+  <text x="290" y="145" fill="#6b6b6b" font-size="11">N ~ NegBin (over-dispersed)</text>
+  <text x="290" y="160" fill="#6b6b6b" font-size="11">X from dosing &#215; dropout</text>
+
+  <line x1="500" y1="119" x2="528" y2="119" stroke="#A0522D" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- VALIDATION -->
+  <rect x="532" y="66" width="224" height="106" rx="10" fill="#FBF3EC" stroke="#A0522D" stroke-width="1.5"/>
+  <text x="548" y="98" fill="#A0522D" font-size="15" font-weight="bold" letter-spacing="1">VALIDATION</text>
+  <text x="548" y="124" fill="#333333" font-size="12.5">FFT &#183; Monte Carlo &#183; aggregate</text>
+  <text x="548" y="145" fill="#6b6b6b" font-size="11">three independent methods</text>
+  <text x="548" y="160" fill="#6b6b6b" font-size="11">must agree (to the kit)</text>
+
+  <line x1="758" y1="119" x2="786" y2="119" stroke="#A0522D" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- DECISION -->
+  <rect x="790" y="66" width="224" height="106" rx="10" fill="#FBF3EC" stroke="#A0522D" stroke-width="1.5"/>
+  <text x="806" y="98" fill="#A0522D" font-size="15" font-weight="bold" letter-spacing="1">DECISION</text>
+  <text x="806" y="124" fill="#333333" font-size="12.5">demand distribution</text>
+  <text x="806" y="145" fill="#6b6b6b" font-size="11">q&#8339;&#8329; overage buffer</text>
+  <text x="806" y="160" fill="#6b6b6b" font-size="11">at a chosen service level</text>
+
+  <text x="16" y="196" fill="#8a8a8a" font-size="11" font-style="italic">real public parameters, synthetic generating layer &#8212; a demand forecast that is certified, not asserted</text>
+</svg>
