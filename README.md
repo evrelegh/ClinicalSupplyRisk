@@ -10,10 +10,10 @@ independent methods (FFT · Monte Carlo · `aggregate`).**
 
 ## Overview
 
-A trial must place drug at its supply depots *before* it knows how much will be needed: enrolment is
-uncertain, and so is how much each patient consumes before completing or dropping out. This repository
-models total depot demand as a **compound distribution** and sizes the buffer stock (the *overage*) a
-depot needs to hit a chosen service level.
+Clinical trials must commit expensive drug inventory to their depots months before enrolment is known,
+and both errors cost: ship too little and a patient misses a dose, ship too much and product expires
+unused. This repository computes the *entire* demand distribution — not just the average — and sizes
+the buffer stock (the *overage*) for any chosen service level.
 
 Its organising principle is that a forecast is only trustworthy if the same distribution, computed by
 **independent methods**, agrees. Total demand is therefore obtained several ways that must reconcile:
@@ -25,6 +25,16 @@ results in full.
 
 ---
 
+## Contributions
+
+- exact FFT computation of the compound demand distribution;
+- adaptive lattice sizing that eliminates FFT aliasing in the tail;
+- independent validation against a Monte-Carlo simulation;
+- independent validation against the `aggregate` package;
+- a reproducible pipeline from public clinical-trial registries.
+
+---
+
 ## Headline results
 
 On a real GLP-1 cohort (weekly injectable, ~72-week treatment), a depot serving five sites over a
@@ -32,12 +42,12 @@ twelve-month horizon:
 
 ![Sizing overage: stock to the 99th percentile for 99% service](figures/fig_overage.png)
 
-- **A small median, an enormous tail.** Typical demand is 416 kits (q50); covering 99 % of scenarios
-  needs **≈ 97,000 kits** (q99) — a roughly **230-fold gap**, driven by heavy-tailed enrolment. That
+- **A small median, an enormous tail.** Typical demand is 233 kits (q50); covering 99 % of scenarios
+  needs **≈ 79,000 kits** (q99) — a roughly **340-fold gap**, driven by heavy-tailed enrolment. That
   gap is the price of a service guarantee, and the cumulative distribution above is the instrument for
   choosing the service level.
 - **Three independent methods agree to the kit.** From-scratch FFT, Monte Carlo, and `aggregate` land
-  on the same q99 (97,238), with the known-answer case exact to ~10^-16.
+  on the same q99 (79,292), with the known-answer case exact to ~10^-16.
 - **A real numerical finding, surfaced by the cross-check.** The methods first *disagreed* in the tail
   (the FFT read q99 ~12 % low); the cause was **FFT aliasing** — the heavy tail wrapped around a
   too-narrow lattice — resolved by sizing the lattice to the distribution. A single method would have
@@ -105,9 +115,20 @@ simulation runs from them, so the ground truth is known and the study reproduces
 
 ---
 
+## Why this repository is different
+
+Most demonstrations stop at a forecast. Here the forecast itself is treated as something to be
+**certified, not asserted**: every headline figure is reproduced independently by exact FFT
+convolution, Monte-Carlo simulation, and the `aggregate` package, and the tail that sizes inventory is
+the part checked hardest. The same discipline runs through the companion
+[LongevityRisk](https://github.com/evrelegh/LongevityRisk) study — the aim is not to produce a number,
+but to establish that the number is right.
+
+---
+
 ## Author
 
 **Erik Van Releghem** · PHNX
 
-A reproducible research implementation, intended for actuarial and educational use rather than
+A reproducible research implementation, intended for research and educational use rather than
 production software.
